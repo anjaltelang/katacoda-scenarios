@@ -8,4 +8,3 @@ Run the following in the linux terminal
 Great! Now verify you have the right Pinniped cli version installed
 
 `Pinniped version`{{execute T1}}
-`ls -la`{{execute T2}}
