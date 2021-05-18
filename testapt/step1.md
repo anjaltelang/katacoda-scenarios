@@ -20,7 +20,7 @@ Run the following in the adjacent terminal
 
 `curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
 chmod +x ./kind
-mv ./kind /some-dir-in-your-PATH/kind`{{execute}}
+mv ./kind /usr/bin/kind`{{execute}}
 
 ##STEP 2
 **Install Kubectl**
@@ -101,7 +101,7 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 `pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \ \> /tmp/pinniped-kubeconfig`{{execute}}
+  --concierge-authenticator-name local-user-authenticator \ > /tmp/pinniped-kubeconfig`{{execute}}
 
 ##STEP 10
 **Create RBAC Rules for the user**
@@ -113,6 +113,5 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 ##STEP 12
 **Use kubectl commands with the generated kubeconfig**
 
-`kubectl create clusterrolebinding pinny-can-read \
-  --clusterrole view \
-  --user pinny-the-seal`{{execute}}
+`kubectl --kubeconfig /tmp/pinniped-kubeconfig \
+  get pods -n pinniped-concierge`{{execute}}
