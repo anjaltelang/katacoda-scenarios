@@ -66,7 +66,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 ##STEP 7
 **Install Pinniped Conceirge**
 
-'kubectl apply -f https://get.pinniped.dev/latest/install-pinniped-concierge.yaml'{{execute}}
+`kubectl apply -f https://get.pinniped.dev/latest/install-pinniped-concierge.yaml`{{execute}}
 
 
 ##STEP 8
@@ -105,8 +105,7 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 `pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \
-  > /tmp/pinniped-kubeconfig` {{execute}}
+  --concierge-authenticator-name local-user-authenticator \ > /tmp/pinniped-kubeconfig`{{execute}}
 
 ##STEP 11
 **Create RBAC Rules for the user**
