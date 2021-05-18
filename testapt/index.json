@@ -1,8 +1,8 @@
 {
-  "title": "Testing Katacoda scenario",
-  "description": "Fun",
+  "title": "Simple Katacoda scenario for Pinniped",
+  "description": "Installing Pinniped Conceirge with Webhook",
   "difficulty": "Beginner",
-  "time": "50 mins",
+  "time": "60 mins",
   "details": {
     "steps": [
       {
@@ -22,13 +22,9 @@
     }
   },
   "environment": {
-    "terminals": [
-    {"name": "T1", "target": "host01"},
-    {"name": "T2", "target": "host02"}
-    ],
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu:1804"
   }
 }
