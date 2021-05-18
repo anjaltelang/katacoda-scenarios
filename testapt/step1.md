@@ -24,9 +24,22 @@ mv ./kind /usr/bin/kind`{{execute}}
 
 ##STEP 2
 **Install Kubectl**
-Download Repo
 
+`sudo apt-get update`{{execute}}
+
+`sudo apt-get install -y apt-transport-https ca-certificates curl`{{execute}}
+
+`sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg`{{execute}}
+
+`echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list`{{execute}}
+
+`sudo apt-get update`{{execute}}
+
+`sudo apt-get install -y kubectl`{{execute}}
+
+<!---
 `curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"`{{execute}}
+--->
 
 Install Kubectl
 
