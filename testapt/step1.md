@@ -91,7 +91,7 @@ Run the following in the linux terminal
 
 Great! Now verify you have the right Pinniped cli version installed
 
-`Pinniped version`{{execute}}
+`pinniped version`{{execute}}
 
 ##STEP 9
 **Generate Kubeconfig**
@@ -101,7 +101,8 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 `pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \ > /tmp/pinniped-kubeconfig`{{execute}}
+  --concierge-authenticator-name local-user-authenticator \
+  > /tmp/pinniped-kubeconfig`{{execute}}
 
 ##STEP 10
 **Create RBAC Rules for the user**
