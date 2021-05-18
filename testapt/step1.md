@@ -73,10 +73,10 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 
 
 ##STEP7
-**Fetch the generated cert
+**Fetch the generated cert**
 `kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
   -o jsonpath={.data.caCertificate} \
-  | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
+  | tee /tmp/local-user-authenticator-ca`{{execute}}
 
 ##STEP 7
 **Create a WebhookAuthenticator object**
