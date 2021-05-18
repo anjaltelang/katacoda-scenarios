@@ -105,7 +105,7 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 `pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \ > /tmp/pinniped-kubeconfig`{{execute}}
+  --concierge-authenticator-name local-user-authenticator \ \> /tmp/pinniped-kubeconfig`{{execute}}
 
 ##STEP 11
 **Create RBAC Rules for the user**
