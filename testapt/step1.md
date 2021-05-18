@@ -66,6 +66,9 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   --from-literal=groups=group1,group2 \
   --from-literal=passwordHash=$(htpasswd -nbBC 10 x password123 | sed -e "s/^x://")`{{execute}}
 
+Also install htpasswd
+`apt install apache2-utils`{{execute}}
+
 ##STEP 6
 **Install Pinniped Conceirge**
 
@@ -77,7 +80,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 `kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
   -o jsonpath={.data.caCertificate} \
   | base64 -d \
-  | tee /tmp/local-user-authenticator-ca`{{execute}}
+  | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
 
 ##STEP 7
 **Create a WebhookAuthenticator object**
@@ -91,7 +94,7 @@ metadata:
 spec:
   endpoint: https://local-user-authenticator.local-user-authenticator.svc/authenticate
   tls:
-    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca)
+    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca-base64-encoded)
 EOF`{{execute}}
 
 
