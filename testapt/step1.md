@@ -91,7 +91,7 @@ metadata:
 spec:
   endpoint: https://local-user-authenticator.local-user-authenticator.svc/authenticate
   tls:
-    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca-base64-encoded)
+    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca)
 EOF`{{execute}}
 
 
