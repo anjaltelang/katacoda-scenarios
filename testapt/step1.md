@@ -76,6 +76,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 **Fetch the generated cert**
 `kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
   -o jsonpath={.data.caCertificate} \
+  | base64 -d \
   | tee /tmp/local-user-authenticator-ca`{{execute}}
 
 ##STEP 7
@@ -90,7 +91,7 @@ metadata:
 spec:
   endpoint: https://local-user-authenticator.local-user-authenticator.svc/authenticate
   tls:
-    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca)
+    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca-base64-encoded)
 EOF`{{execute}}
 
 
