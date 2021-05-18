@@ -25,6 +25,7 @@ mv ./kind /usr/bin/kind`{{execute}}
 ##STEP 2
 **Install Kubectl**
 
+<!---
 `sudo apt-get update`{{execute}}
 
 `sudo apt-get install -y apt-transport-https ca-certificates curl`{{execute}}
@@ -33,6 +34,7 @@ mv ./kind /usr/bin/kind`{{execute}}
 
 `echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list`{{execute}}
 
+--->
 `sudo apt-get update`{{execute}}
 
 `sudo apt-get install -y kubectl`{{execute}}
@@ -70,6 +72,12 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 `kubectl apply -f https://get.pinniped.dev/latest/install-pinniped-concierge.yaml`{{execute}}
 
 
+##STEP7
+**Fetch the generated cert
+`kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
+  -o jsonpath={.data.caCertificate} \
+  | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
+
 ##STEP 7
 **Create a WebhookAuthenticator object**
  Configure the Pinniped Concierge to authenticate using local-user-authenticator.
@@ -82,7 +90,7 @@ metadata:
 spec:
   endpoint: https://local-user-authenticator.local-user-authenticator.svc/authenticate
   tls:
-    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca-base64-encoded)
+    certificateAuthorityData: $(cat /tmp/local-user-authenticator-ca)
 EOF`{{execute}}
 
 
