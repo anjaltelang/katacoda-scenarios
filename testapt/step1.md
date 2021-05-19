@@ -70,11 +70,6 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 
 ##STEP6
 **Fetch the generated cert**
-`kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
-  -o jsonpath={.data.caCertificate} \
-  | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
-
-**Alternatively try**
 `while ! kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator -o jsonpath={.data.caCertificate} 1>/tmp/local-user-authenticator-ca-base64-encoded 2>/dev/null; do echo "Waiting for local-user-authenticator-tls-serving-certificate Secret to be created..."; sleep 3; done`{{execute}}
 
 ##STEP 7
@@ -123,7 +118,7 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 `pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \`
+  --concierge-authenticator-name local-user-authenticator `
 
   `> /tmp/pinniped-kubeconfig`
 
@@ -142,6 +137,10 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
   get pods -n pinniped-concierge`{{execute}}
 
 **DEBUG**
+
+**Check the secret created for the user**
+
+`kubectl get secret pinny-the-seal --namespace local-user-authenticator -o yaml`{{execute}}
 
 **Check get pods without Kubeconfig**
 
