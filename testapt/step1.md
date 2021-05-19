@@ -49,6 +49,8 @@ You can create a cluster with a --name <clustername> if you like.
 
 `kind create cluster`{{execute}}
 
+Kind cluster creation takes about two minutes.  
+
 ##STEP 4
 **Deploy Authenticator**
 
@@ -66,7 +68,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   --from-literal=groups=group1,group2 \
   --from-literal=passwordHash=$(htpasswd -nbBC 10 x password123 | sed -e "s/^x://")`{{execute}}
 
-WAIT FOR 20 SECONDS AFTER THIS STEP BEFORE FETCHING CERT
+Please **wait for 20 SECONDS** after this step before fetching cert below.
 
 ##STEP6
 **Fetch the generated cert**
@@ -114,14 +116,15 @@ Great! Now verify you have the right Pinniped cli version installed
 Generate a kubeconfig for the current cluster. Use --static-token to include a token which should allow you to authenticate as the user that you created previously.
 
 **Copy paste the text in quotes below into the terminal**
-**Note**: I have broken the command down into two parts but it is a **Single** command. Copy the first part and add the second part right after the '\'.
 
-  'pinniped get kubeconfig \
+**Note**: I have broken the command down into two parts but it is a **Single** command. Copy the first part and add the second part right after the end of the first before entering command '\'.
+
+`pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \'
+  --concierge-authenticator-name local-user-authenticator \`
 
-  '> /tmp/pinniped-kubeconfig'
+  ` > /tmp/pinniped-kubeconfig`
 
 
 ##STEP 11
@@ -137,11 +140,12 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 `kubectl --kubeconfig /tmp/pinniped-kubeconfig \
   get pods -n pinniped-concierge`{{execute}}
 
-**Debug in case the above fails**
+**DEBUG**
 
-Check if kubectl can get pods without the Kubeconfig and if the pinniped pods are running
+**Check get pods without Kubeconfig**
+
 `kubectl get pods -n pinniped-concierge`{{execute}}
 
-Check logs for the pods
+**Check logs for the pods**
 
-**"kubectl -f "POD NAME FROM OUTPUT ABOVE" -n pinniped-concierge"**
+"kubectl -f "pod name from above" -n pinniped-concierge"
