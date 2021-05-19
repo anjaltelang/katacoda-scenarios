@@ -69,20 +69,19 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 Also install htpasswd
 `apt install apache2-utils`{{execute}}
 
-##STEP 6
+##STEP6
+**Fetch the generated cert**
+`kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
+  -o jsonpath={.data.caCertificate} \
+  | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
+
+##STEP 7
 **Install Pinniped Conceirge**
 
 `kubectl apply -f https://get.pinniped.dev/latest/install-pinniped-concierge.yaml`{{execute}}
 
 
-##STEP7
-**Fetch the generated cert**
-`kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
-  -o jsonpath={.data.caCertificate} \
-  | base64 -d \
-  | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
-
-##STEP 7
+##STEP 8
 **Create a WebhookAuthenticator object**
  Configure the Pinniped Concierge to authenticate using local-user-authenticator.
 
@@ -98,7 +97,7 @@ spec:
 EOF`{{execute}}
 
 
-##STEP 8
+##STEP 9
 **Install Pinniped cli**
 Run the following in the linux terminal
 
@@ -110,7 +109,7 @@ Great! Now verify you have the right Pinniped cli version installed
 
 `pinniped version`{{execute}}
 
-##STEP 9
+##STEP 10
 **Generate Kubeconfig**
 
 Generate a kubeconfig for the current cluster. Use --static-token to include a token which should allow you to authenticate as the user that you created previously.
@@ -121,7 +120,7 @@ Copy paste the text in **quotes** below into the terminal:
   --concierge-authenticator-type webhook \
   --concierge-authenticator-name local-user-authenticator \ > /tmp/pinniped-kubeconfig"
 
-##STEP 10
+##STEP 11
 **Create RBAC Rules for the user**
 
 `kubectl create clusterrolebinding pinny-can-read \
