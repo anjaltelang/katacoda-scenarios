@@ -66,9 +66,6 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   --from-literal=groups=group1,group2 \
   --from-literal=passwordHash=$(htpasswd -nbBC 10 x password123 | sed -e "s/^x://")`{{execute}}
 
-Also install htpasswd
-`apt install apache2-utils`{{execute}}
-
 ##STEP6
 **Fetch the generated cert**
 `kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
@@ -101,7 +98,7 @@ EOF`{{execute}}
 **Install Pinniped cli**
 Run the following in the linux terminal
 
-`curl -Lso pinniped https://get.pinniped.dev/v0.4.1/pinniped-cli-linux-amd64 \
+`curl -Lso pinniped https://get.pinniped.dev/latest/pinniped-cli-linux-amd64 \
   && chmod +x pinniped \
   && sudo mv pinniped /usr/local/bin/pinniped`{{execute}}
 
@@ -116,9 +113,10 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 Copy paste the text in **quotes** below into the terminal:
 
   "pinniped get kubeconfig \
-  --static-token "pinny-the-seal:password123" \
-  --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \ > /tmp/pinniped-kubeconfig"
+    --static-token "pinny-the-seal:password123" \
+    --concierge-authenticator-type webhook \
+    --concierge-authenticator-name local-user-authenticator > /tmp/pinniped-kubeconfig"
+
 
 ##STEP 11
 **Create RBAC Rules for the user**
@@ -132,3 +130,11 @@ Copy paste the text in **quotes** below into the terminal:
 
 `kubectl --kubeconfig /tmp/pinniped-kubeconfig \
   get pods -n pinniped-concierge`{{execute}}
+
+**Debug in case the above fails**
+
+Check if kubectl can get pods without the Kubeconfig and if the pinniped pods are running
+`kubectl get pods -n pinniped-concierge`{{execute}}
+
+Check logs for the pods
+**"kubectl -f <POD NAME FROM OUTPUT ABOVE> -n pinniped-concierge"**
