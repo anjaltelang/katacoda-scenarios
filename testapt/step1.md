@@ -68,6 +68,10 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   --from-literal=groups=group1,group2 \
   --from-literal=passwordHash=$(htpasswd -nbBC 10 x password123 | sed -e "s/^x://")`{{execute}}
 
+Setup htpasswd
+
+`apt install apache2-utils`
+
 Please **wait for 20-30 SECONDS** after this step before fetching cert below. It might take couple tries :)
 
 ##STEP6
@@ -75,6 +79,10 @@ Please **wait for 20-30 SECONDS** after this step before fetching cert below. It
 `kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
   -o jsonpath={.data.caCertificate} \
   | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
+
+Alternatively try: 
+
+`while ! kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator -o jsonpath={.data.caCertificate} 1>/tmp/local-user-authenticator-ca-base64-encoded 2>/dev/null; do echo "Waiting for local-user-authenticator-tls-serving-certificate Secret to be created..."; sleep 3; done` {{execute}}
 
 ##STEP 7
 **Install Pinniped Conceirge**
