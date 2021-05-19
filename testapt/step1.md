@@ -66,7 +66,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 `kubectl create secret generic pinny-the-seal \
   --namespace local-user-authenticator \
   --from-literal=groups=group1,group2 \
-  --from-literal=passwordHash=$2y$10$wntWabvqI93j7zPE3yIKreuIUOk0.kQdZR7o0k8mqXxT36d0FuUPu`{{execute}}
+  --from-literal=passwordHash='$2y$10$wntWabvqI93j7zPE3yIKreuIUOk0.kQdZR7o0k8mqXxT36d0FuUPu'`{{execute}}
 
 ##STEP6
 **Fetch the generated cert**
