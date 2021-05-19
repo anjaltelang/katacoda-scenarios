@@ -74,6 +74,8 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   -o jsonpath={.data.caCertificate} \
   | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
 
+**Alternatively try**
+`while ! kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator -o jsonpath={.data.caCertificate} 1>/tmp/local-user-authenticator-ca-base64-encoded 2>/dev/null; do echo "Waiting for local-user-authenticator-tls-serving-certificate Secret to be created..."; sleep 3; done`{{execute}}
 
 ##STEP 7
 **Install Pinniped Conceirge**
@@ -123,7 +125,7 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
   --concierge-authenticator-type webhook \
   --concierge-authenticator-name local-user-authenticator \`
 
-  `> /tmp/pinniped-kubeconfig`{{execute}}
+  `> /tmp/pinniped-kubeconfig`
 
 
 ##STEP 11
