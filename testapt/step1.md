@@ -66,6 +66,8 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   --from-literal=groups=group1,group2 \
   --from-literal=passwordHash=$(htpasswd -nbBC 10 x password123 | sed -e "s/^x://")`{{execute}}
 
+WAIT FOR 20 SECONDS AFTER THIS STEP BEFORE FETCHING CERT
+
 ##STEP6
 **Fetch the generated cert**
 `kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator \
@@ -112,10 +114,11 @@ Great! Now verify you have the right Pinniped cli version installed
 Generate a kubeconfig for the current cluster. Use --static-token to include a token which should allow you to authenticate as the user that you created previously.
 Copy paste the text in **quotes** below into the terminal:
 
-  "pinniped get kubeconfig \
-    --static-token "pinny-the-seal:password123" \
-    --concierge-authenticator-type webhook \
-    --concierge-authenticator-name local-user-authenticator > /tmp/pinniped-kubeconfig"
+  'pinniped get kubeconfig \
+  --static-token "pinny-the-seal:password123" \
+  --concierge-authenticator-type webhook \
+  --concierge-authenticator-name local-user-authenticator \'
+  '> /tmp/pinniped-kubeconfig'
 
 
 ##STEP 11
@@ -137,4 +140,5 @@ Check if kubectl can get pods without the Kubeconfig and if the pinniped pods ar
 `kubectl get pods -n pinniped-concierge`{{execute}}
 
 Check logs for the pods
-**"kubectl -f <POD NAME FROM OUTPUT ABOVE> -n pinniped-concierge"**
+
+**"kubectl -f "POD NAME FROM OUTPUT ABOVE" -n pinniped-concierge"**
