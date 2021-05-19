@@ -66,13 +66,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 `kubectl create secret generic pinny-the-seal \
   --namespace local-user-authenticator \
   --from-literal=groups=group1,group2 \
-  --from-literal=passwordHash=$(htpasswd -nbBC 10 x password123 | sed -e "s/^x://")`{{execute}}
-
-Setup htpasswd
-
-`apt install apache2-utils`
-
-Please **wait for 20-30 SECONDS** after this step before fetching cert below. It might take couple tries :)
+  --from-literal=passwordHash=$2y$10$wntWabvqI93j7zPE3yIKreuIUOk0.kQdZR7o0k8mqXxT36d0FuUPu)`{{execute}}
 
 ##STEP6
 **Fetch the generated cert**
@@ -80,7 +74,7 @@ Please **wait for 20-30 SECONDS** after this step before fetching cert below. It
   -o jsonpath={.data.caCertificate} \
   | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
 
-Alternatively try: 
+Alternatively try:
 
 `while ! kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator -o jsonpath={.data.caCertificate} 1>/tmp/local-user-authenticator-ca-base64-encoded 2>/dev/null; do echo "Waiting for local-user-authenticator-tls-serving-certificate Secret to be created..."; sleep 3; done` {{execute}}
 
