@@ -49,7 +49,7 @@ You can create a cluster with a --name <clustername> if you like.
 
 `kind create cluster`{{execute}}
 
-Kind cluster creation takes about two minutes.  
+Kind cluster creation takes about **two minutes**, Breathe, Have a sip of coffee and check the status!!  
 
 ##STEP 4
 **Deploy Authenticator**
@@ -68,7 +68,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   --from-literal=groups=group1,group2 \
   --from-literal=passwordHash=$(htpasswd -nbBC 10 x password123 | sed -e "s/^x://")`{{execute}}
 
-Please **wait for 20 SECONDS** after this step before fetching cert below.
+Please **wait for 20-30 SECONDS** after this step before fetching cert below. It might take couple tries :)
 
 ##STEP6
 **Fetch the generated cert**
@@ -117,12 +117,12 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 
 **Copy paste the text in quotes below into the terminal**
 
-**Note**: I have broken the command down into two parts but it is a **Single** command. Copy the first part and add the second part right after the end of the first before entering command '\'.
+**Note**: I have broken the command down into two parts but it is a **Single** command. Copy the first part and add the second part with a space, then hit enter.  
 
 `pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
-  --concierge-authenticator-name local-user-authenticator \`
+  --concierge-authenticator-name local-user-authenticator `
 
   ` > /tmp/pinniped-kubeconfig`
 
