@@ -112,12 +112,15 @@ Great! Now verify you have the right Pinniped cli version installed
 **Generate Kubeconfig**
 
 Generate a kubeconfig for the current cluster. Use --static-token to include a token which should allow you to authenticate as the user that you created previously.
-Copy paste the text in **quotes** below into the terminal:
+
+**Copy paste the text in quotes below into the terminal**
+**Note**: I have broken the command down into two parts but it is a **Single** command. Copy the first part and add the second part right after the '\'.
 
   'pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
   --concierge-authenticator-name local-user-authenticator \'
+
   '> /tmp/pinniped-kubeconfig'
 
 
