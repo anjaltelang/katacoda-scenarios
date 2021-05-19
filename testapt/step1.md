@@ -66,7 +66,7 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 `kubectl create secret generic pinny-the-seal \
   --namespace local-user-authenticator \
   --from-literal=groups=group1,group2 \
-  --from-literal=passwordHash=$2y$10$wntWabvqI93j7zPE3yIKreuIUOk0.kQdZR7o0k8mqXxT36d0FuUPu)`{{execute}}
+  --from-literal=passwordHash=$2y$10$wntWabvqI93j7zPE3yIKreuIUOk0.kQdZR7o0k8mqXxT36d0FuUPu`{{execute}}
 
 ##STEP6
 **Fetch the generated cert**
@@ -74,9 +74,6 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
   -o jsonpath={.data.caCertificate} \
   | tee /tmp/local-user-authenticator-ca-base64-encoded`{{execute}}
 
-Alternatively try:
-
-`while ! kubectl get secret local-user-authenticator-tls-serving-certificate --namespace local-user-authenticator -o jsonpath={.data.caCertificate} 1>/tmp/local-user-authenticator-ca-base64-encoded 2>/dev/null; do echo "Waiting for local-user-authenticator-tls-serving-certificate Secret to be created..."; sleep 3; done` {{execute}}
 
 ##STEP 7
 **Install Pinniped Conceirge**
@@ -125,7 +122,7 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
   --static-token "pinny-the-seal:password123" \
   --concierge-authenticator-type webhook \
   --concierge-authenticator-name local-user-authenticator \
-  &gt /tmp/pinniped-kubeconfig`
+  &gt /tmp/pinniped-kubeconfig`{{execute}}
 
 
 ##STEP 11
