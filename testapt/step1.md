@@ -7,8 +7,9 @@ Pinniped is the easy, secure way to login to your Kubernetes cluster.
 Pinniped allows cluster administrators to easily plug in external identity providers (IDPs) into Kubernetes clusters. This is achieved via a uniform install procedure across all types and origins of Kubernetes clusters, declarative configuration via Kubernetes APIs, enterprise-grade integrations with IDPs, and distribution-specific integration strategies.
 More information https://pinniped.dev
 
-#Step summary:
-Here's what we will be doing in this lab:
+#Summary:
+In this lab, we will learn to use the Pinniped Concierge with Kind clusters.
+Overview of steps:
 1. Install K8s cluster - we will use kind
 2. Install Kubectl
 3. Create kind cluster
