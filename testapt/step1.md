@@ -1,18 +1,26 @@
 Welcome!
-This TUTORIAL will give you a glimpse into the simplicity of Installing Pinniped
+This TUTORIAL will give you a glimpse into the simplicity of Installing and using Pinniped for K8s auth.
+
+**What is PINNIPED**
+
+Pinniped is the easy, secure way to login to your Kubernetes cluster.
+Pinniped allows cluster administrators to easily plug in external identity providers (IDPs) into Kubernetes clusters. This is achieved via a uniform install procedure across all types and origins of Kubernetes clusters, declarative configuration via Kubernetes APIs, enterprise-grade integrations with IDPs, and distribution-specific integration strategies.
+More information https://pinniped.dev
+
 #Step summary:
-Here's what we will be doing in the lab:
+Here's what we will be doing in this lab:
 1. Install K8s cluster - we will use kind
 2. Install Kubectl
 3. Create kind cluster
 4. Install local Authenticator
 5. Create a user in the authenticator
-6. Install Pinniped Conceirge
-7. Configure Conceirge to authenticate using local authenticator
-8. Install Pinniped cli
-9. Generate kubeconfig
-10. Create RBAC rules for the cluster
-11. Use Kubeconfig created to access cluster with Kubectl commands
+6. Fetch the generated cert
+7. Install Pinniped Conceirge
+8. Configure Conceirge to authenticate using local authenticator
+9. Install Pinniped cli
+10. Generate kubeconfig
+11. Create RBAC rules for the cluster
+12. Use Kubeconfig created to access cluster with Kubectl commands
 
 ##STEP 1
 **Install Kind cluster**
