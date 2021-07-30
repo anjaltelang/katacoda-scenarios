@@ -84,7 +84,8 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 ##STEP 7
 **Install Pinniped Conceirge**
 
-`kubectl apply -f https://get.pinniped.dev/latest/install-pinniped-concierge.yaml`{{execute}}
+`kubectl apply -f kubectl apply -f https://get.pinniped.dev/v0.9.2/install-pinniped-concierge-crds.yaml`{{execute}}
+`kubectl apply -f kubectl apply -f https://get.pinniped.dev/v0.9.2/install-pinniped-concierge.yaml`{{execute}}
 
 
 ##STEP 8
@@ -118,11 +119,7 @@ Great! Now verify you have the right Pinniped cli version installed
 ##STEP 10
 **Generate Kubeconfig**
 
-Generate a kubeconfig for the current cluster. Use --static-token to include a token which should allow you to authenticate as the user that you created previously.
-
-**Copy paste the text in quotes below into the terminal**
-
-**Note**: I have broken the command down into two parts but it is a **Single** command. Copy the first part and add the second part with a space, then hit enter.  
+Generate a kubeconfig for the current cluster.  
 
 `pinniped get kubeconfig \
   --static-token "pinny-the-seal:password123" \
@@ -141,7 +138,7 @@ Generate a kubeconfig for the current cluster. Use --static-token to include a t
 `kubectl --kubeconfig /tmp/pinniped-kubeconfig \
   get pods -n pinniped-concierge`{{execute}}
 
-**DEBUG**
+**DEBUG IN CASE OF FAILURE**
 
 **Check the secret created for the user**
 
