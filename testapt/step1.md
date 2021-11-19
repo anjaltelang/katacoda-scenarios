@@ -27,7 +27,7 @@ Overview of steps:
 **Install Kind cluster**
 Run the following in the adjacent terminal
 
-`curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
+`curl --insecure -Lo ./kind  https://github.com/kubernetes-sigs/kind/releases/download/v0.11.1/kind-linux-amd64
 chmod +x ./kind
 mv ./kind /usr/bin/kind`{{execute}}
 
