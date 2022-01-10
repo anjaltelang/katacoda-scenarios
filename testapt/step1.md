@@ -84,8 +84,8 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 ##STEP 7
 **Install Pinniped Conceirge**
 
-`kubectl apply -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge-crds.yaml`{{execute}}
-`kubectl apply -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml`{{execute}}
+`kubectl apply -f https://get.pinniped.dev/latest/install-pinniped-concierge-crds.yaml`{{execute}}
+`kubectl apply -f https://get.pinniped.dev/latest/install-pinniped-concierge.yaml`{{execute}}
 
 
 ##STEP 8
