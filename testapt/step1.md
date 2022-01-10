@@ -84,8 +84,8 @@ Create a test user named *pinny-the-seal* in the local-user-authenticator namesp
 ##STEP 7
 **Install Pinniped Conceirge**
 
-`kubectl apply -f https://get.pinniped.dev/v0.9.2/install-pinniped-concierge-crds.yaml`{{execute}}
-`kubectl apply -f https://get.pinniped.dev/v0.9.2/install-pinniped-concierge.yaml`{{execute}}
+`kubectl apply -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge-crds.yaml`{{execute}}
+`kubectl apply -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml`{{execute}}
 
 
 ##STEP 8
@@ -108,7 +108,7 @@ EOF`{{execute}}
 **Install Pinniped cli**
 Run the following in the linux terminal
 
-`curl -Lso pinniped https://get.pinniped.dev/latest/pinniped-cli-linux-amd64 \
+`curl -k -Lso pinniped https://get.pinniped.dev/latest/pinniped-cli-linux-amd64 \
   && chmod +x pinniped \
   && sudo mv pinniped /usr/local/bin/pinniped`{{execute}}
 
